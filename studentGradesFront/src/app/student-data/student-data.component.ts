@@ -15,7 +15,7 @@ export class StudentDataComponent implements OnInit {
   }
 
   getClassNames() {
-    this.http.get<any>('http://127.0.0.1:8000/studentgradesapp/classnames/').subscribe(
+    this.http.get<any>('http://47.94.96.123/api/studentgradesapp/classnames/').subscribe(
       data => {
         console.log(data);
       },
