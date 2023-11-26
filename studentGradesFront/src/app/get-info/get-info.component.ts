@@ -12,9 +12,9 @@ export class GetInfoComponent {
 
   download() {
     // in development
-    // const csvUrl = 'http://127.0.0.1:8000/studentgradesapp/export-csv/';
+    // const csvUrl = 'http://127.0.0.1:8000/api/studentgradesapp/export-csv/';
     // in production
-    const csvUrl = 'http://47.94.96.123/studentgradesapp/export-csv/';
+    const csvUrl = 'http://47.94.96.123/api/studentgradesapp/export-csv/';
     this.csvExportService.downloadCsv(csvUrl).subscribe((blob: Blob) => {
       const a = document.createElement('a');
       const objectUrl = URL.createObjectURL(blob);
