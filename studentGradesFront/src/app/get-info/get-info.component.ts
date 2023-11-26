@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CsvExportService } from '../csv-export.service';
 
 @Component({
   selector: 'app-get-info',
@@ -7,4 +8,24 @@ import { Component } from '@angular/core';
 })
 export class GetInfoComponent {
 
+  constructor(private csvExportService: CsvExportService) { }
+
+  download() {
+    // in development
+    // const csvUrl = 'http://127.0.0.1:8000/studentgradesapp/export-csv/';
+    // in production
+    const csvUrl = 'http://47.94.96.123/studentgradesapp/export-csv/';
+    this.csvExportService.downloadCsv(csvUrl).subscribe((blob: Blob) => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = 'export.csv';
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    },
+      error => {
+        console.error('Download failed', error);
+      }
+    );
+  }
 }
